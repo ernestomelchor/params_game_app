@@ -1,7 +1,7 @@
 class Api::ParamsExamplesController < ApplicationController
   def query_params_action
     input_name = params["my_name"]
-    @output_message = "Hi, your name in all caps is: #{input_name.upcase}"
+    @output_message = "#{input_name.upcase}"
     render "query_params.json.jb"
   end
 
@@ -26,5 +26,16 @@ class Api::ParamsExamplesController < ApplicationController
       @output_message = "You guessed the right number! #{answer} is the answer."
     end
     render "query_params.json.jb"
+  end
+
+  def login_action
+    user_username = params["username"]
+    user_password = params["password"]
+    if user_username == "hugh" && user_password == "swordfish"
+      @output_message = "Valid credentials."
+    else
+      @output_message = "Invalid credentials."
+    end
+    render "body_params.json.jb"
   end
 end
